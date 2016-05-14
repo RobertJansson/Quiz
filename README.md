@@ -1,6 +1,6 @@
 # Quiz
-Simple Quiz-program. See the wiki page for a link to an OS X compiled version (https://github.com/RobertJansson/Quiz/wiki).<br>
-HiG - Lab7<br>
+Simple Quiz-program (HiG - Lab7)<br>
+See the wiki page for a link to an OS X compiled version (https://github.com/RobertJansson/Quiz/wiki).<br>
 JavaFX8-version of my Quiz using strict MVC (and FXML)<p>
 
 <p><b>Controller</b><br>
