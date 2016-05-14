@@ -1,5 +1,6 @@
 package quiz.view;
 
+import quiz.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,7 +9,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
-import quiz.Controller;
 
 public class QuizViewController
 {
@@ -21,7 +21,7 @@ public class QuizViewController
 	@FXML private RadioButton rbE;
 	@FXML private RadioButton rbF;
 	@FXML private ToggleGroup rbGroup;
-	private RadioButton[] rB;		// For iterations
+	private RadioButton[] rB;		// For iteration-purpose only (indexing)
 	@FXML private ProgressBar pB;
 	@FXML private Button bNext;
 
@@ -47,18 +47,11 @@ public class QuizViewController
 	 */
 	@FXML private void initialize() {
 		rB = new RadioButton[6];
-		rB[0] = rbA;
-		rB[1] = rbB;
-		rB[2] = rbC;
-		rB[3] = rbD;
-		rB[4] = rbE;
-		rB[5] = rbF;
-		rbA.setToggleGroup(rbGroup);
-		rbB.setToggleGroup(rbGroup);
-		rbC.setToggleGroup(rbGroup);
-		rbD.setToggleGroup(rbGroup);
-		rbE.setToggleGroup(rbGroup);
-		rbF.setToggleGroup(rbGroup);
+		rB[0] = rbA; rB[1] = rbB; rB[2] = rbC;	// House-keeping
+		rB[3] = rbD; rB[4] = rbE; rB[5] = rbF;
+		rbA.setToggleGroup(rbGroup); rbB.setToggleGroup(rbGroup);
+		rbC.setToggleGroup(rbGroup); rbD.setToggleGroup(rbGroup);
+		rbE.setToggleGroup(rbGroup); rbF.setToggleGroup(rbGroup);
 	}
 
 	/**
@@ -78,51 +71,65 @@ public class QuizViewController
 		log("Key getText: " + ke.getText());
 
 		switch (ke.getText()){
-		case "1": rbA.setSelected(true); break;
-		case "2": rbB.setSelected(true); break;
-		case "3": rbC.setSelected(true); break;
-		case "4": rbD.setSelected(true); break;
-		case "5": rbE.setSelected(true); break;
-		case "6": rbF.setSelected(true); break;
+		case "1": rb(rbA); break;
+		case "2": rb(rbB); break;
+		case "3": rb(rbC); break;
+		case "4": rb(rbD); break;
+		case "5": rb(rbE); break;
+		case "6": rb(rbF); break;
 		default:
 			switch (ke.getCode().toString()){
 			case "ENTER": getNextQuiz(); break;
 			case "RIGHT_ARROW": getNextQuiz(); break;
-//			case "BACK_SPACE": getPreviousQuiz(); break;
-//			case "LEFT_ARROW": getPreviousQuiz(); break;
 			default: break;
 			}
+		}
+	}
+	
+	/**
+	 * Private method for keyPressed(KeyEvent)
+	 * @param rbPressed is the RadioButton for the pressed key
+	 */
+	private void rb(RadioButton rbPressed){
+		if (rbPressed.isVisible()){
+			rbPressed.setSelected(true);
+			bNext.setDisable(false);
 		}
 	}
 
 	/**
 	 * Listeners for when the user clicks a button
 	 */
-	@FXML private void rbClicked()	{ bNext.setVisible(true); }
-	@FXML private void bNext()		{ getNextQuiz(); }
+	@FXML private void rbClicked()	{ bNext.setDisable(false);	}
+	@FXML private void bNext()		{ getNextQuiz();			}
 
 	/**
-	 * Tell controller to evaluate our expression
-	 * Public: To let mainApp start an evaluation (menubar conversions)
+	 * Private method for button-listeners.<br>
+	 * Tell controller to evaluate the picked answer.
 	 */
 	private void getNextQuiz() {
 		String picked = ((Labeled) rbGroup.getSelectedToggle()).getText();
 		mainApp.stepQuiz(picked);
 	}
 
+	/**
+	 * This is called from Controller to show {@code AQuiz}.<br>
+	 * RadioButtons for answers not in the string-array will be hidden.
+	 * @param question
+	 * @param allAnswers -> RadioButton labels
+	 */
 	public void showQuiz(String question, String[] allAnswers){
 		this.question.setText(question);
 		this.question.setVisible(true);
-		this.bNext.setVisible(false);
+		this.bNext.setDisable(true);
 		for (int i = 0; i < 6; i++){
 			if (i >= allAnswers.length) {
 				rB[i].setText("");
 				rB[i].setSelected(false);
 				rB[i].setVisible(false);
 			} else {
-				rB[i].setSelected(false);
-//				rB[i].setPickOnBounds(false);
 				rB[i].setText(allAnswers[i]);
+				rB[i].setSelected(false);
 				rB[i].setVisible(true);
 			}
 		}
@@ -130,7 +137,7 @@ public class QuizViewController
 	
 	/**
 	 * Update progress bar
-	 * @param double, 0.0 is empty and 1.0 is full
+	 * @param double (0.0 is empty and 1.0 is full)
 	 */
 	public void setProgress(double d){
 		pB.setProgress(d);

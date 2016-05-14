@@ -10,7 +10,7 @@ import java.util.List;
 public class QuizModel {
 	private List<AQuiz> quiz;
 	
-	// Simple debug method, just flip: LOG = true
+	// Simple debug method, just flip: LOG
 	private static final boolean LOG = false;
 	private static void log(String s){ if (LOG) System.out.println(s); };
 
@@ -30,18 +30,37 @@ public class QuizModel {
 	
 	// Getters for the controller:
 
+	/**
+	 * Getter for the Question
+	 * @param index in the list where the AQuiz is stored
+	 * @return The Question of {@code AQuiz} as a {@code String}
+	 */
 	public String getQuestion(int index){
 		return quiz.get(index).getQuestion();
 	}
 	
+	/**
+	 * Getter for the Correct answer
+	 * @param index in the list where the AQuiz is stored
+	 * @return The Correct answer of {@code AQuiz} as a {@code String}
+	 */
 	public String getCorrect(int index){
 		return quiz.get(index).getCorrect();
 	}
 	
+	/**
+	 * Getter for the array of all possible answers
+	 * @param index in the list where the AQuiz is stored
+	 * @return The answers of {@code AQuiz} as a {@code String[]} (array)
+	 */
 	public String[] getAllAnswers(int index){
 		return quiz.get(index).getAllAnswers();
 	}
 
+	/**
+	 * Getter for the number of {@code AQuiz} in the list
+	 * @return size of quiz as an {@code int}
+	 */
 	public int getQuizSize(){
 		return quiz.size();
 	}

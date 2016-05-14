@@ -1,7 +1,6 @@
 package quiz;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -12,7 +11,6 @@ import quiz.model.QuizModel;
 import quiz.view.LoadViewController;
 import quiz.view.MenuController;
 import quiz.view.QuizViewController;
-
 
 public class Controller extends Application
 {
@@ -39,13 +37,12 @@ public class Controller extends Application
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Quiz");
-//		AquaFx.style();				// OS X adaption - comment this out and you must
-		initRootLayout();			// ...change height of root window: 360 -> 389
+		initRootLayout();
 		showLoadView();
 	}
 	
 	/**
-	 * Initializes the root layout with menu.
+	 * Initializes the root layout with a tiny menu.
 	 */
 	private void initRootLayout() {
 		try {
@@ -69,6 +66,7 @@ public class Controller extends Application
 	
 	/**
 	 * Initialize the Load-view.
+	 * Start of the program from a users view
 	 */
 	private void showLoadView() {
 		try {
@@ -86,7 +84,7 @@ public class Controller extends Application
 	}
 
 	/**
-	 * Load a new game into a new model and start the QuizView
+	 * Load a new game into a new model and start the game in a QuizView
 	 * @throws Exception
 	 */
 	public void loadQuiz() throws Exception{
@@ -116,19 +114,19 @@ public class Controller extends Application
 	}
 
 	/**
-	 * Private method to show the particular quiz.<br>
-	 * Called when a new quiz should show, but also from stepQuiz().
+	 * Private method to show the particular {@code AQuiz}.<br>
+	 * Called when a new quiz-game begins, but also during stepQuiz().
 	 * @param index to show
 	 */
 	private void showQuiz(int index){
 		if (index < model.getQuizSize())
 			view.showQuiz(model.getQuestion(index), model.getAllAnswers(index));
-		else throw new RuntimeException("QuizModel out of bounds:" + index + " of " + model.getQuizSize());
+		else throw new MyRuntimeException("QuizModel out of bounds:" + index + " of " + model.getQuizSize());
 	}
 
 	/**
 	 * Method to step to the next Quiz
-	 * @param pick is the answer given on the last question
+	 * @param pick is the answer given for the last question
 	 */
 	public void stepQuiz(String pick){
 		if (pick.equals(model.getCorrect(currentIndex)))
@@ -144,7 +142,7 @@ public class Controller extends Application
 	}
 	
 	/**
-	 * Show result, called when quiz is at the end
+	 * Show result, called when quiz is finished
 	 * @param score is the number of correct answers
 	 * @param max is the maximum number of scores
 	 */

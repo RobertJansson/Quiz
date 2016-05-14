@@ -3,10 +3,11 @@ package quiz.model;
 import java.util.List;
 
 /**
- * Class to compose AQuiz from a list of string.
- * First string = question
- * Second string = correct answer
- * Consecutive strings = bogous answer (should adapt to size of list)
+ * Class to compose {@code AQuiz}.<br>
+ * First string = question<br>
+ * Second string in list: Correct answer<br>
+ * Consecutive strings in list: Bogous answer/-s<br>
+ * (will adapt to size of list)
  */
 public class AQuiz
 {
@@ -18,6 +19,7 @@ public class AQuiz
 	 * Constructor to compose {@code AQuiz} from a list of string.<br>
 	 * List-first will become the question.<br>
 	 * List-second should be the correct answer.<p>
+	 * Note:<br>
 	 * This constructor will insert the correct answer with random position.<br>
 	 * @param list of strings
 	 */

@@ -16,9 +16,7 @@ public class MenuController {
 	}
 
 	// JavaFX "action listeners"
-
 	// File-menu:
-	@FXML public void loadNewGame() throws Exception{ mainApp.loadQuiz(); }
+	@FXML private void loadNewGame() throws Exception{ mainApp.loadQuiz(); }
 	@FXML private void quit() { System.exit(0); }
-
 }

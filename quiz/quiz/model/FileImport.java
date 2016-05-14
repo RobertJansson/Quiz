@@ -11,8 +11,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
- * Class to import Quiz-file from disk (using JavaFX:FileChooser):<p>
-{@code ************ QuizFile.txt ************}<p>
+ * Class to import Quiz-file from disk (using JavaFX:FileChooser).<br>
+ * Note: program handle a maximum of 7 answers per {@code AQuiz}<p>
+ * File example:<br>
+{@code ************ QuizFile.txt ************}<br>
 {@code Question 1}<br>
 {@code Correct answer}<br>
 {@code Bogous answer}<br>
