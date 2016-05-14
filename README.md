@@ -1,7 +1,8 @@
 # Quiz
 Simple Quiz-program (HiG - Lab7)<br>
-See the wiki page for a link to an OS X compiled version (https://github.com/RobertJansson/Quiz/wiki).<br>
-JavaFX8-version of my Quiz using strict MVC (and FXML)<p>
+JavaFX8-version of my Quiz using strict MVC (and FXML)<br>
+See the wiki page for a link to an OS X compiled version (https://github.com/RobertJansson/Quiz/wiki).<p>
+
 
 <p><b>Controller</b><br>
 Controller.java - The main controller.
