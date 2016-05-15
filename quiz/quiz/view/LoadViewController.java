@@ -48,11 +48,12 @@ public class LoadViewController
 	 * @param score is the correct answers
 	 * @param max is the maximum score possible
 	 */
-	public void showResult(int score, int max){
+	public void showResult(int score, int max, int attempt){
 		bRestart.setVisible(true);
 		headline.setText("Result from Quiz:");
 		if (score == max) {
-			result.setText("Congratulations, you scored a full " + score + " points!");
+			result.setText("Congratulations, you scored the full " + score + " points!\n"
+					+ "(It took " + attempt + " attempt" + (attempt > 1 ? "s)" :")"));
 			bResume.setVisible(false);
 		} else if (score == 0) {
 			result.setText("Sorry, you didn't have any correct answer.");
@@ -62,4 +63,19 @@ public class LoadViewController
 			bResume.setVisible(true);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LoadViewController [" + (mainApp != null ? "mainApp=" + mainApp + ", " : "")
+				+ (headline != null ? "headline=" + headline + ", " : "")
+				+ (result != null ? "result=" + result + ", " : "")
+				+ (bResume != null ? "bResume=" + bResume + ", " : "")
+				+ (bRestart != null ? "bRestart=" + bRestart + ", " : "") + (bLoad != null ? "bLoad=" + bLoad : "")
+				+ "]";
+	}
+	
+	
 }

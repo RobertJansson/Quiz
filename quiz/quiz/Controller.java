@@ -21,8 +21,7 @@ public class Controller extends Application
 	private LoadViewController load;
 	private MenuController menu;
 	private int currentIndex;
-	private int score;
-	private int resumeScore;
+	private int attempt;
 
 	// Simple debug method, just flip the boolean
 	private static final boolean LOG = true;
@@ -42,7 +41,7 @@ public class Controller extends Application
 		initRootLayout();
 		showLoadView();
 	}
-	
+
 	/**
 	 * Initializes the root layout with a tiny menu.
 	 */
@@ -66,7 +65,7 @@ public class Controller extends Application
 	/****  The methods above are initializers only 	****/
 	//-------------------------------------------------//
 	/**** 		From here the program return 		****/
-	
+
 	/**
 	 * Initialize the Load-view.
 	 * Start of the program from a users view
@@ -87,30 +86,19 @@ public class Controller extends Application
 	}
 
 	/**
-	 * Restart the same Quiz
-	 */
-	public void restartQuiz() {
-		currentIndex = 0;
-		score = 0;
-		resumeScore = 0;
-		model.startGame();
-		if (model.getGameSize() > 0)
-			showQuizView();
-		else
-			throw new MyRuntimeException("Restart game but it's empty (should be impossibe)");
-	}
-	
-	/**
-	 * Revisit the unresulved questions
+	 * Revisit the unresolved questions
 	 */
 	public void resumeQuiz(){
-		currentIndex = 0;
-		resumeScore = score;
-		score = 0;
-		if (model.getGameSize() > 0)
-			showQuizView();
-		else
-			throw new MyRuntimeException("Resume to empty game (should be impossibe)");
+		showQuizView();
+	}
+
+	/**
+	 * Restart the same Quiz by having the model copy the quiz into the game
+	 */
+	public void restartQuiz() {
+		attempt = 0;
+		model.startGame();
+		showQuizView();
 	}
 
 	/**
@@ -118,31 +106,34 @@ public class Controller extends Application
 	 * @throws Exception
 	 */
 	public void loadQuiz() throws Exception{
-		currentIndex = 0;
-		resumeScore = 0;
-		score = 0;
+		attempt = 0;
 		this.model = new QuizModel();
-		if (model.getQuizSize() > 0)
-			showQuizView();
+		showQuizView();
 	}
-		
+
 	/**
 	 * Initializes the Quiz-game view
 	 */
 	private void showQuizView() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Controller.class.getResource("view/QuizView.fxml"));
-			AnchorPane quizView = (AnchorPane) loader.load();
-			rootLayout.setCenter(quizView);
-			QuizViewController viewController = loader.getController();
-			viewController.setMainApp(this);
-			view = viewController;			// Save reference to quiz-view
-			showQuiz(currentIndex);
+		currentIndex = 0;
+		attempt = attempt + 1;
+		if (model.getGameSize() > 0) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Controller.class.getResource("view/QuizView.fxml"));
+				AnchorPane quizView = (AnchorPane) loader.load();
+				rootLayout.setCenter(quizView);
+				QuizViewController viewController = loader.getController();
+				viewController.setMainApp(this);
+				view = viewController;			// Save reference to quiz-view
+				showQuiz(currentIndex);
 
-		} catch (IOException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		else
+			throw new MyRuntimeException("Can't start an empty game (should be impossibe)");
 	}
 
 	/**
@@ -153,7 +144,7 @@ public class Controller extends Application
 	private void showQuiz(int index){
 		if (index < model.getGameSize())
 			view.showQuiz(model.getQuestion(index), model.getAllAnswers(index));
-		else throw new MyRuntimeException("QuizModel out of bounds:" + index + " of " + model.getQuizSize());
+		else throw new MyRuntimeException("QuizModel out of bounds:" + index + " of " + model.getTotalScore());
 	}
 
 	/**
@@ -161,20 +152,20 @@ public class Controller extends Application
 	 * @param pick is the answer given for the last question
 	 */
 	public void stepQuiz(String pick){
-		if (pick.equals(model.getCorrect(currentIndex-score))) {
-			model.remove(currentIndex-score);
-			score = score +1;
-		}
-		currentIndex = currentIndex + 1;
-		view.setProgress((double) currentIndex / (double) model.getQuizSize());
+		if (pick.equals(model.getCorrect(currentIndex)))
+			model.remove(currentIndex);
+		else
+			currentIndex = currentIndex + 1;
 
-		if ((currentIndex-score) < model.getGameSize()){
-			showQuiz((currentIndex-score));
+		view.setProgress((double) (currentIndex + model.getScore()) / (double) model.getTotalScore());
+
+		if (currentIndex < model.getGameSize()){
+			showQuiz((currentIndex));
 		} else {
 			showResult();
 		}
 	}
-	
+
 	/**
 	 * Show result, called when quiz is finished
 	 * @param score is the number of correct answers
@@ -183,10 +174,9 @@ public class Controller extends Application
 	private void showResult(){
 		showLoadView();
 		menu.enableRestartMenuItem();
-		score = score + resumeScore;
-		load.showResult(score, model.getQuizSize());
+		load.showResult(model.getScore(), model.getTotalScore(), attempt);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -1,6 +1,8 @@
 package quiz.model;
 
 import quiz.MyRuntimeException;
+
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,8 +11,9 @@ import java.util.List;
  * Class to compose a Quiz-puzzle as a list of {@code AQuiz}
  */
 public class QuizModel {
-	private List<AQuiz> quiz;
-	private List<AQuiz> game;
+	private List<AQuiz> quiz;	// Quiz as loaded from file.
+	private List<AQuiz> game;	// Shallow copy of quiz so game can remove correctly
+								// ...answered questions and let user revisit the others.
 	
 	// Simple debug method, just flip: LOG
 	private static final boolean LOG = false;
@@ -19,8 +22,7 @@ public class QuizModel {
 	public QuizModel() throws Exception{
 		quiz = new LinkedList<AQuiz>();
 		FileImport.importQuiz(this);
-		startGame();
-		log(game.toString());
+		startGame();								log(game.toString());
 	}
 	
 	/**
@@ -30,7 +32,7 @@ public class QuizModel {
 	 * were not correct.
 	 */
 	public void startGame(){
-		game = new LinkedList<AQuiz>(quiz);
+		game = Collections.synchronizedList(new LinkedList<AQuiz>(quiz));
 	}
 	
 	/**
@@ -51,7 +53,7 @@ public class QuizModel {
 	public String getQuestion(int index){
 		return game.get(index).getQuestion();
 	}
-	
+
 	/**
 	 * Getter for the Correct answer
 	 * @param index in the list where the AQuiz is stored
@@ -74,21 +76,26 @@ public class QuizModel {
 	 * Getter for the number of {@code AQuiz} in the list
 	 * @return size of quiz as an {@code int}
 	 */
-	public int getQuizSize(){
-		return quiz.size();
-	}
-
-	/**
-	 * Getter for the number of {@code AQuiz} in the list
-	 * @return size of quiz as an {@code int}
-	 */
 	public int getGameSize(){
 		return game.size();
 	}
 
 	/**
-	 * Getter for the number of {@code AQuiz} in the list
+	 * Get the total score
 	 * @return size of quiz as an {@code int}
+	 */
+	public int getTotalScore(){
+		return quiz.size();
+	}
+	
+	public int getScore(){
+		return quiz.size() - game.size();
+	}
+	
+	/**
+	 * Method to remove {@code AQuiz} from the game-list
+	 * Used when a correct answer is given.
+	 * @param index to remove
 	 */
 	public void remove(int index){
 		if (index < game.size())
