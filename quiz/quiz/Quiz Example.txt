@@ -10,8 +10,8 @@ How many corners are there in a traingle
 
 // This is a comment and should be skipped
 How many kilometers do you expect to travel in 30 min if you move in 50 kmph
-10 km
 25 km
+10 km
 5 km
 
 Which city is capital in Sweden
