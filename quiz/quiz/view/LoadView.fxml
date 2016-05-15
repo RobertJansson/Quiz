@@ -18,16 +18,17 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="100.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="30.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="headline" alignment="CENTER" contentDisplay="CENTER" maxWidth="480.0" minWidth="480.0" prefWidth="480.0" text="Welcome" textOverrun="WORD_ELLIPSIS">
+            <Label fx:id="headline" alignment="CENTER" contentDisplay="CENTER" maxWidth="480.0" minWidth="480.0" prefWidth="480.0" text="Welcome" wrapText="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" maxWidth="440.0" minWidth="440.0" prefWidth="440.0" text="Please load a new game to play..." textAlignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" maxWidth="440.0" minWidth="440.0" prefWidth="440.0" text="Please load a new game to play..." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
@@ -37,7 +38,15 @@
             </Label>
             <ButtonBar GridPane.rowIndex="2">
                <buttons>
-                  <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bLoad" prefWidth="200.0" text="Load new game..." />
+                  <Button fx:id="bRestart" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bRestart" prefWidth="200.0" text="Restart game" visible="false" wrapText="true" />
+               </buttons>
+               <padding>
+                  <Insets left="140.0" right="140.0" />
+               </padding>
+            </ButtonBar>
+            <ButtonBar GridPane.rowIndex="3">
+               <buttons>
+                  <Button fx:id="bLoad" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bLoad" prefWidth="200.0" text="Load new game..." wrapText="true" />
                </buttons>
                <padding>
                   <Insets left="140.0" right="140.0" />

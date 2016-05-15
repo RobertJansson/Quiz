@@ -29,7 +29,7 @@
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="question" text="Label" textOverrun="WORD_ELLIPSIS">
+            <Label fx:id="question" text="Label" wrapText="true">
                <font>
                   <Font size="15.0" />
                </font>
@@ -38,12 +38,12 @@
                <children>
                   <VBox spacing="20.0">
                      <children>
-                        <RadioButton fx:id="rbA" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
-                        <RadioButton fx:id="rbB" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
-                        <RadioButton fx:id="rbC" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
-                        <RadioButton fx:id="rbD" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
-                        <RadioButton fx:id="rbE" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
-                        <RadioButton fx:id="rbF" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" textOverrun="WORD_ELLIPSIS" />
+                        <RadioButton fx:id="rbA" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
+                        <RadioButton fx:id="rbB" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
+                        <RadioButton fx:id="rbC" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
+                        <RadioButton fx:id="rbD" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
+                        <RadioButton fx:id="rbE" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
+                        <RadioButton fx:id="rbF" mnemonicParsing="false" onAction="#rbClicked" text="RadioButton" wrapText="true" />
                      </children>
                   </VBox>
                </children>

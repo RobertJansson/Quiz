@@ -19,6 +19,7 @@ public class Controller extends Application
 	private QuizModel model;
 	private QuizViewController view;
 	private LoadViewController load;
+	private MenuController menu;
 	private int currentIndex;
 	private int score;
 
@@ -53,6 +54,7 @@ public class Controller extends Application
 			primaryStage.setScene(scene);
 			MenuController viewController = loader.getController();
 			viewController.setMainApp(this);
+			menu = viewController;	// Save reference to menu
 			primaryStage.show();
 
 		} catch (IOException e) {
@@ -76,11 +78,21 @@ public class Controller extends Application
 			rootLayout.setCenter(loadView);
 			LoadViewController viewController = loader.getController();
 			viewController.setMainApp(this);
-			load = viewController;		// Save reference to view
-			
+			load = viewController;	// Save reference to load-view
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Restart the same Quiz
+	 */
+	public void restartQuiz() {
+		currentIndex = 0;
+		score = 0;
+		if (model.getQuizSize() > 0)
+			showQuizView();
 	}
 
 	/**
@@ -91,9 +103,10 @@ public class Controller extends Application
 		currentIndex = 0;
 		score = 0;
 		this.model = new QuizModel();
-		showQuizView();
+		if (model.getQuizSize() > 0)
+			showQuizView();
 	}
-	
+		
 	/**
 	 * Initializes the Quiz-game view
 	 */
@@ -105,7 +118,7 @@ public class Controller extends Application
 			rootLayout.setCenter(quizView);
 			QuizViewController viewController = loader.getController();
 			viewController.setMainApp(this);
-			view = viewController;			// Save reference to view
+			view = viewController;			// Save reference to quiz-view
 			showQuiz(currentIndex);
 
 		} catch (IOException e) {
@@ -148,6 +161,7 @@ public class Controller extends Application
 	 */
 	private void showResult(int score, int max){
 		showLoadView();
+		menu.enableRestartMenuItem();
 		load.showResult(score, max);
 	}
 	

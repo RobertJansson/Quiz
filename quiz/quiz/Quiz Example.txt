@@ -3,15 +3,15 @@ How many corners are there in a square
 3
 
 How many corners are there in a traingle
-4
 3
+4
 2
 1
 
 // This is a comment and should be skipped
 How many kilometers do you expect to travel in 30 min if you move in 50 kmph
-25 km
 10 km
+25 km
 5 km
 
 Which city is capital in Sweden

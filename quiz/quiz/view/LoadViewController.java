@@ -10,10 +10,11 @@ public class LoadViewController
 	private Controller mainApp;		// Reference to the main application
 	@FXML private Label headline;	// The headline
 	@FXML private Label result;		// The result
+	@FXML private Button bRestart;
 	@FXML private Button bLoad;
 
 	/**
-	 * The constructor is called before the initialize() method.
+	 * The constructor for the LoadFile-viewer
 	 */
 	public LoadViewController() {
 		headline = new Label();
@@ -21,8 +22,7 @@ public class LoadViewController
 	}
 
 	/**
-	 * Initializes the controller class. This method is automatically
-	 * called after the fxml file has been loaded.
+	 * Initializes the controller class after the fxml file.
 	 */
 	@FXML private void initialize() {	}
 
@@ -35,9 +35,10 @@ public class LoadViewController
 	}
 
 	/**
-	 * Listeners for when the user clicks a button
+	 * Listeners, for when the user clicks a button
 	 * @throws Exception 
 	 */
+	@FXML private void bRestart() throws Exception	{ mainApp.restartQuiz(); }
 	@FXML private void bLoad() throws Exception	{ mainApp.loadQuiz(); }
 
 	/**
@@ -46,11 +47,12 @@ public class LoadViewController
 	 * @param max is the maximum score possible
 	 */
 	public void showResult(int score, int max){
+		bRestart.setVisible(true);
 		headline.setText("Result from Quiz:");
 		if (score == max)
-			result.setText("Congratulations, you scored a full " + score + "points!");
+			result.setText("Congratulations, you scored a full " + score + " points!");
 		else if (score == 0)
-			result.setText("Sorry, you didn't have a correct answer at all.");
+			result.setText("Sorry, you didn't have any correct answer.");
 		else
 			result.setText("You scored " + score + " out of " + max + " points.");
 	}

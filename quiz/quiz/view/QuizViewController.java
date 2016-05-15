@@ -33,7 +33,7 @@ public class QuizViewController
 	private void log(String s){ if (LOG) System.out.println(s); }
 
 	/**
-	 * The constructor is called before the initialize() method.
+	 * The constructor for the Quiz-view
 	 */
 	public QuizViewController() {
 		question = new Label("");
@@ -42,8 +42,7 @@ public class QuizViewController
 	}
 
 	/**
-	 * Initializes the controller class. This method is automatically called
-	 * after the fxml file has been loaded.
+	 * Initializes the controller class after the fxml file.
 	 */
 	@FXML private void initialize() {
 		rB = new RadioButton[6];
@@ -63,7 +62,7 @@ public class QuizViewController
 	}
 
 	/**
-	 * Called when the user type on keyboard
+	 * Keyboard listeners
 	 */
 	@FXML
 	private void keyPressed(KeyEvent ke){
@@ -105,7 +104,7 @@ public class QuizViewController
 
 	/**
 	 * Private method for button-listeners.<br>
-	 * Tell controller to evaluate the picked answer.
+	 * Let controller evaluate the picked answer and move on in stepQuiz().
 	 */
 	private void getNextQuiz() {
 		String picked = ((Labeled) rbGroup.getSelectedToggle()).getText();
@@ -119,7 +118,7 @@ public class QuizViewController
 	 * @param allAnswers -> RadioButton labels
 	 */
 	public void showQuiz(String question, String[] allAnswers){
-		this.question.setText(question);
+		this.question.setText(question + "?");
 		this.question.setVisible(true);
 		this.bNext.setDisable(true);
 		for (int i = 0; i < 6; i++){
@@ -142,5 +141,4 @@ public class QuizViewController
 	public void setProgress(double d){
 		pB.setProgress(d);
 	}
-
 }
