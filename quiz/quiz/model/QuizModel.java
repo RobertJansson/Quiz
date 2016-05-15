@@ -1,5 +1,6 @@
 package quiz.model;
 
+import quiz.MyRuntimeException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  */
 public class QuizModel {
 	private List<AQuiz> quiz;
+	private List<AQuiz> game;
 	
 	// Simple debug method, just flip: LOG
 	private static final boolean LOG = false;
@@ -17,7 +19,18 @@ public class QuizModel {
 	public QuizModel() throws Exception{
 		quiz = new LinkedList<AQuiz>();
 		FileImport.importQuiz(this);
-		log(quiz.toString());
+		startGame();
+		log(game.toString());
+	}
+	
+	/**
+	 * Copy the Quiz loaded from file to start or restart a game.<br>
+	 * Called from constructor or if user choose to restart the same game.<br>
+	 * Should not be called if user select to answer the questions which
+	 * were not correct.
+	 */
+	public void startGame(){
+		game = new LinkedList<AQuiz>(quiz);
 	}
 	
 	/**
@@ -36,7 +49,7 @@ public class QuizModel {
 	 * @return The Question of {@code AQuiz} as a {@code String}
 	 */
 	public String getQuestion(int index){
-		return quiz.get(index).getQuestion();
+		return game.get(index).getQuestion();
 	}
 	
 	/**
@@ -45,7 +58,7 @@ public class QuizModel {
 	 * @return The Correct answer of {@code AQuiz} as a {@code String}
 	 */
 	public String getCorrect(int index){
-		return quiz.get(index).getCorrect();
+		return game.get(index).getCorrect();
 	}
 	
 	/**
@@ -54,7 +67,7 @@ public class QuizModel {
 	 * @return The answers of {@code AQuiz} as a {@code String[]} (array)
 	 */
 	public String[] getAllAnswers(int index){
-		return quiz.get(index).getAllAnswers();
+		return game.get(index).getAllAnswers();
 	}
 
 	/**
@@ -63,6 +76,25 @@ public class QuizModel {
 	 */
 	public int getQuizSize(){
 		return quiz.size();
+	}
+
+	/**
+	 * Getter for the number of {@code AQuiz} in the list
+	 * @return size of quiz as an {@code int}
+	 */
+	public int getGameSize(){
+		return game.size();
+	}
+
+	/**
+	 * Getter for the number of {@code AQuiz} in the list
+	 * @return size of quiz as an {@code int}
+	 */
+	public void remove(int index){
+		if (index < game.size())
+			game.remove(index);
+		else
+			throw new MyRuntimeException("Game out of bounce, trying to remove AQuiz " + index);
 	}
 
 	/* (non-Javadoc)

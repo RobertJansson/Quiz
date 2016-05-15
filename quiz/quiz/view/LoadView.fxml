@@ -20,6 +20,7 @@
           <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="30.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -38,13 +39,21 @@
             </Label>
             <ButtonBar GridPane.rowIndex="2">
                <buttons>
-                  <Button fx:id="bRestart" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bRestart" prefWidth="200.0" text="Restart game" visible="false" wrapText="true" />
+                  <Button fx:id="bResume" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bResume" prefWidth="200.0" text="Revisit unsolved" visible="false" wrapText="true" />
                </buttons>
                <padding>
                   <Insets left="140.0" right="140.0" />
                </padding>
             </ButtonBar>
             <ButtonBar GridPane.rowIndex="3">
+               <buttons>
+                  <Button fx:id="bRestart" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bRestart" prefWidth="200.0" text="Restart game" visible="false" wrapText="true" />
+               </buttons>
+               <padding>
+                  <Insets left="140.0" right="140.0" />
+               </padding>
+            </ButtonBar>
+            <ButtonBar GridPane.rowIndex="4">
                <buttons>
                   <Button fx:id="bLoad" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#bLoad" prefWidth="200.0" text="Load new game..." wrapText="true" />
                </buttons>

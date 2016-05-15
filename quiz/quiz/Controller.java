@@ -22,6 +22,7 @@ public class Controller extends Application
 	private MenuController menu;
 	private int currentIndex;
 	private int score;
+	private int resumeScore;
 
 	// Simple debug method, just flip the boolean
 	private static final boolean LOG = true;
@@ -91,8 +92,25 @@ public class Controller extends Application
 	public void restartQuiz() {
 		currentIndex = 0;
 		score = 0;
-		if (model.getQuizSize() > 0)
+		resumeScore = 0;
+		model.startGame();
+		if (model.getGameSize() > 0)
 			showQuizView();
+		else
+			throw new MyRuntimeException("Restart game but it's empty (should be impossibe)");
+	}
+	
+	/**
+	 * Revisit the unresulved questions
+	 */
+	public void resumeQuiz(){
+		currentIndex = 0;
+		resumeScore = score;
+		score = 0;
+		if (model.getGameSize() > 0)
+			showQuizView();
+		else
+			throw new MyRuntimeException("Resume to empty game (should be impossibe)");
 	}
 
 	/**
@@ -101,6 +119,7 @@ public class Controller extends Application
 	 */
 	public void loadQuiz() throws Exception{
 		currentIndex = 0;
+		resumeScore = 0;
 		score = 0;
 		this.model = new QuizModel();
 		if (model.getQuizSize() > 0)
@@ -132,7 +151,7 @@ public class Controller extends Application
 	 * @param index to show
 	 */
 	private void showQuiz(int index){
-		if (index < model.getQuizSize())
+		if (index < model.getGameSize())
 			view.showQuiz(model.getQuestion(index), model.getAllAnswers(index));
 		else throw new MyRuntimeException("QuizModel out of bounds:" + index + " of " + model.getQuizSize());
 	}
@@ -142,15 +161,17 @@ public class Controller extends Application
 	 * @param pick is the answer given for the last question
 	 */
 	public void stepQuiz(String pick){
-		if (pick.equals(model.getCorrect(currentIndex)))
+		if (pick.equals(model.getCorrect(currentIndex-score))) {
+			model.remove(currentIndex-score);
 			score = score +1;
+		}
 		currentIndex = currentIndex + 1;
 		view.setProgress((double) currentIndex / (double) model.getQuizSize());
 
-		if (currentIndex < model.getQuizSize()){
-			showQuiz(currentIndex);
+		if ((currentIndex-score) < model.getGameSize()){
+			showQuiz((currentIndex-score));
 		} else {
-			showResult(score, model.getQuizSize());
+			showResult();
 		}
 	}
 	
@@ -159,10 +180,11 @@ public class Controller extends Application
 	 * @param score is the number of correct answers
 	 * @param max is the maximum number of scores
 	 */
-	private void showResult(int score, int max){
+	private void showResult(){
 		showLoadView();
 		menu.enableRestartMenuItem();
-		load.showResult(score, max);
+		score = score + resumeScore;
+		load.showResult(score, model.getQuizSize());
 	}
 	
 	/* (non-Javadoc)

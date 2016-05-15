@@ -10,6 +10,7 @@ public class LoadViewController
 	private Controller mainApp;		// Reference to the main application
 	@FXML private Label headline;	// The headline
 	@FXML private Label result;		// The result
+	@FXML private Button bResume;
 	@FXML private Button bRestart;
 	@FXML private Button bLoad;
 
@@ -38,6 +39,7 @@ public class LoadViewController
 	 * Listeners, for when the user clicks a button
 	 * @throws Exception 
 	 */
+	@FXML private void bResume() throws Exception	{ mainApp.resumeQuiz(); }
 	@FXML private void bRestart() throws Exception	{ mainApp.restartQuiz(); }
 	@FXML private void bLoad() throws Exception	{ mainApp.loadQuiz(); }
 
@@ -49,11 +51,15 @@ public class LoadViewController
 	public void showResult(int score, int max){
 		bRestart.setVisible(true);
 		headline.setText("Result from Quiz:");
-		if (score == max)
+		if (score == max) {
 			result.setText("Congratulations, you scored a full " + score + " points!");
-		else if (score == 0)
+			bResume.setVisible(false);
+		} else if (score == 0) {
 			result.setText("Sorry, you didn't have any correct answer.");
-		else
+			bResume.setVisible(true);
+		} else {
 			result.setText("You scored " + score + " out of " + max + " points.");
+			bResume.setVisible(true);
+		}
 	}
 }
