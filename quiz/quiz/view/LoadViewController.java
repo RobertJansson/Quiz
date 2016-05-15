@@ -63,19 +63,4 @@ public class LoadViewController
 			bResume.setVisible(true);
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "LoadViewController [" + (mainApp != null ? "mainApp=" + mainApp + ", " : "")
-				+ (headline != null ? "headline=" + headline + ", " : "")
-				+ (result != null ? "result=" + result + ", " : "")
-				+ (bResume != null ? "bResume=" + bResume + ", " : "")
-				+ (bRestart != null ? "bRestart=" + bRestart + ", " : "") + (bLoad != null ? "bLoad=" + bLoad : "")
-				+ "]";
-	}
-	
-	
 }
