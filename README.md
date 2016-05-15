@@ -1,7 +1,7 @@
 # Quiz
 Simple Quiz-program (HiG-Lab7-VT2016)<br>
 JavaFX8-version of my Quiz using strict MVC (and FXML)<br>
-A compiled program for OS X can be downloaded here: [Quiz.dmg]https://kvicktajm.se/Quiz.dmg).<p>
+A compiled program for OS X can be downloaded here: <A HREF=https://kvicktajm.se/Quiz.dmg>Quiz.dmg</A><p>
 
 <p><b>Controller</b><br>
 Controller.java - The main controller.
