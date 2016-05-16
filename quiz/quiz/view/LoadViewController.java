@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 public class LoadViewController
 {
 	private Controller mainApp;		// Reference to the main application
-	@FXML private Label headline;	// The headline
-	@FXML private Label result;		// The result
+	@FXML private Label headline;
+	@FXML private Label result;
 	@FXML private Button bResume;
 	@FXML private Button bRestart;
 	@FXML private Button bLoad;
@@ -32,7 +32,7 @@ public class LoadViewController
 	 * @param mainApp
 	 */
 	public void setMainApp(Controller mainApp) {
-		this.mainApp = mainApp;
+		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo
 	}
 
 	/**

@@ -58,7 +58,7 @@ public class QuizViewController
 	 * @param mainApp
 	 */
 	public void setMainApp(Controller mainApp) {
-		this.mainApp = mainApp;
+		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo
 	}
 
 	/**
@@ -69,29 +69,29 @@ public class QuizViewController
 		log("Key getCode: " + ke.getCode());
 		log("Key getText: " + ke.getText());
 
-		switch (ke.getText()){
-		case "1": rb(rbA); break;
-		case "2": rb(rbB); break;
-		case "3": rb(rbC); break;
-		case "4": rb(rbD); break;
-		case "5": rb(rbE); break;
-		case "6": rb(rbF); break;
-		default:
-			switch (ke.getCode().toString()){
-			case "ENTER": getNextQuiz(); break;
-			case "RIGHT_ARROW": getNextQuiz(); break;
-			default: break;
-			}
+		switch (ke.getText()) {
+			case "1": rb(rbA); break;
+			case "2": rb(rbB); break;
+			case "3": rb(rbC); break;
+			case "4": rb(rbD); break;
+			case "5": rb(rbE); break;
+			case "6": rb(rbF); break;
+			default:
+				switch (ke.getCode().toString()) {
+					case "ENTER": getNextQuiz(); break;
+					case "RIGHT_ARROW": getNextQuiz(); break;
+					default: break;
+				}
 		}
 	}
 	
 	/**
 	 * Private method for keyPressed(KeyEvent)
-	 * @param rbPressed is the RadioButton for the pressed key
+	 * @param pressed RadioButton
 	 */
-	private void rb(RadioButton rbPressed){
-		if (rbPressed.isVisible()){
-			rbPressed.setSelected(true);
+	private void rb(RadioButton pressed){
+		if (pressed.isVisible()){
+			pressed.setSelected(true);
 			bNext.setDisable(false);
 		}
 	}

@@ -53,12 +53,13 @@ public class Controller extends Application
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			MenuController viewController = loader.getController();
-			viewController.setMainApp(this);
-			menu = viewController;	// Save reference to menu
+			viewController.setMainApp(this);	// Mork calling Orson, come in Orson
+			menu = viewController;				// Save reference to menu
 			primaryStage.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new MyRuntimeException(e.getMessage());
+//			e.printStackTrace();
 		}
 	}
 
@@ -77,11 +78,11 @@ public class Controller extends Application
 			AnchorPane loadView = (AnchorPane) loader.load();
 			rootLayout.setCenter(loadView);
 			LoadViewController viewController = loader.getController();
-			viewController.setMainApp(this);
-			load = viewController;	// Save reference to load-view
+			viewController.setMainApp(this);	// Mork calling Orson, come in Orson
+			load = viewController;				// Save reference to load-view
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new MyRuntimeException(""+e.getMessage());
 		}
 	}
 
@@ -124,12 +125,12 @@ public class Controller extends Application
 				AnchorPane quizView = (AnchorPane) loader.load();
 				rootLayout.setCenter(quizView);
 				QuizViewController viewController = loader.getController();
-				viewController.setMainApp(this);
-				view = viewController;			// Save reference to quiz-view
+				viewController.setMainApp(this);	// Mork calling Orson, come in Orson
+				view = viewController;				// Save reference to quiz-view
 				showQuiz(currentIndex);
 
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw new MyRuntimeException(e.getMessage());
 			}
 		}
 		else
@@ -142,9 +143,11 @@ public class Controller extends Application
 	 * @param index to show
 	 */
 	private void showQuiz(int index){
+		view.setProgress((double) (1 + currentIndex + model.getScore()) / (double) model.getTotalScore());
 		if (index < model.getGameSize())
 			view.showQuiz(model.getQuestion(index), model.getAllAnswers(index));
-		else throw new MyRuntimeException("QuizModel out of bounds:" + index + " of " + model.getTotalScore());
+		else
+			throw new MyRuntimeException("Game is out of bounds: " + index + " of " + model.getGameSize());
 	}
 
 	/**
@@ -156,8 +159,6 @@ public class Controller extends Application
 			model.remove(currentIndex);
 		else
 			currentIndex = currentIndex + 1;
-
-		view.setProgress((double) (currentIndex + model.getScore()) / (double) model.getTotalScore());
 
 		if (currentIndex < model.getGameSize()){
 			showQuiz((currentIndex));

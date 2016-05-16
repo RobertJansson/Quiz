@@ -14,7 +14,7 @@ public class MenuController {
 	 * @param mainApp
 	 */
 	public void setMainApp(Controller mainApp) {
-		this.mainApp = mainApp;
+		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo
 	}
 	
 	// JavaFX "action listeners"
