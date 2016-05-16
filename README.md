@@ -19,7 +19,7 @@ QuizModel.java - The model of the Quiz. (A list of AQuiz.)<br>
 AQuiz.java  - One Quiz, representing the Question, correct answer and all possible answers.<br>
 FileImport.java - Load a new Quiz-game from file. See example file.
 <p>
-Note: First line = Question, Second line = Correct answer, then all bogous answers (viewer will adapt up to max 6).<br>
+Note: First line = Question, Second line = Correct answer, then all bogous answers (viewer will adapt to max 6).<br>
 Empty line is divider and lines starting with "//" are skipped.
 <p>
 MyRuntimeException.java - to explore the new exception-system (with special windows) of JFX8 (technically I believe the ~ 40'th-ich upgrade of the JRE).
