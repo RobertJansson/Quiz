@@ -1,6 +1,6 @@
 # Quiz
 Simple Quiz-program (HiG-Lab7-VT2016)<br>
-JavaFX8-version of my Quiz using strict MVC (and FXML)<br>
+JavaFX8-version using MVC and FXML<br>
 Quiz has been compiled into a program:<br>
 OS X: <A HREF=https://kvicktajm.se/Quiz.dmg>Quiz.dmg</A><br>
 Linux x86 (32bit): <A HREF=https://kvicktajm.se/debian/Quiz_x86.tar.gz>Quiz_x86.tar.gz</A><p>
