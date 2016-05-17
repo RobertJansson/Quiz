@@ -133,8 +133,6 @@ public class Controller extends Application
 				throw new MyRuntimeException(e.getMessage());
 			}
 		}
-		else
-			throw new MyRuntimeException("Can't start an empty game (should be impossibe)");
 	}
 
 	/**
