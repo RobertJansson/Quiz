@@ -3,7 +3,7 @@ Simple Quiz-program (HiG-Lab7-VT2016)<br>
 JavaFX8-version of my Quiz using strict MVC (and FXML)<br>
 Quiz has been compiled into a program for the following:<br>
 OS X: <A HREF=https://kvicktajm.se/Quiz.dmg>Quiz.dmg</A><br>
-Debian i586 (32bit): <A HREF=https://kvicktajm.se/debian32/Quiz.zip>Quiz.zip</A> (troligtvis alla linux på x86)<p>
+Linux x86 (32bit): <A HREF=https://kvicktajm.se/debian/Quiz_x86.tar.gz>Quiz_x86.tar.gz</A><p>
 
 <p><b>Controller</b><br>
 Controller.java - The main controller.
