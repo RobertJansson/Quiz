@@ -15,7 +15,7 @@ public class QuizModel {
 	private List<AQuiz> game;	// Shallow copy of quiz so game can remove correctly
 								// ...answered questions and let user revisit the others.
 	
-	// Simple debug method, just flip: LOG
+	// Simple debug method, just flip: LOG = true;
 	private static final boolean LOG = false;
 	private static void log(String s){ if (LOG) System.out.println(s); };
 
@@ -31,8 +31,18 @@ public class QuizModel {
 	 * Should not be called if user select to answer the questions which
 	 * were not correct.
 	 */
+	@SuppressWarnings("unchecked")
 	public void startGame(){
-		game = Collections.synchronizedList(new LinkedList<AQuiz>(quiz));
+
+		// I really try to make a shallow copy but as far as understand
+		// the debugger in Eclipse it does not point to the same address.
+		// I might get an AQuiz-object that in its case points to the same
+		// data but it's beyond my scope. I trust Oracle this is how it should be done.
+		game = (List<AQuiz>) ((LinkedList<AQuiz>) quiz).clone();
+
+		// This should be a deep copy and in the debugger it looks the same,
+		// except being synchronized by collection:
+//		game = Collections.synchronizedList(new LinkedList<AQuiz>(quiz));
 	}
 	
 	/**
