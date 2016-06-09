@@ -11,9 +11,9 @@ Controller.java - The main controller.
 Menu.fxml -> MenuController.java<br>
 -RootLayout which define the stage and menubar as the program start.<br>
 LoadView.fxml -> LoadViewController.java<br>
--LoadView is the landing page, where the user load/restart/resume a game and also double to show the result.<br>
+-LoadView is the landing scene, where the user load/restart/resume a game and also double to show the result.<br>
 QuizView.fxml -> QuizViewController.java<br>
--A viewer to show each Quiz. This is the view for the on-going game.<br>
+-A scene to show each Quiz. This is the scene for the on-going game.<br>
 
 <p><b>Model</b><br>
 QuizModel.java - The model of the Quiz. (A list of AQuiz.)<br>
