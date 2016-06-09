@@ -27,6 +27,7 @@ Empty line is divider and lines starting with "//" are skipped.<br>
 <p><b>Exceptions</b><br>
 MyRuntimeException.java - to explore the new alert-windows of JavaFX8 (technically: JRE version 8u40).
 
-<p><p>
-Tooling: Java 8 (latest) and an IDE with JavaFX.<br>
+<p>
+<p><b>Tooling</b><br>
+JavaSE 8 (latest) and an IDE with JavaFX libraries and tools.<br>
 For Eclipse, update everything from within the program and go here for the e(fx)clipse toolset:<br> http://www.eclipse.org/efxclipse/install.html<br>
