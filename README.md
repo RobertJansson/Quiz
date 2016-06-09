@@ -21,7 +21,7 @@ QuizModel.java - The model of the Quiz. Make a list of AQuiz and call FileImport
 AQuiz.java  - One Quiz, representing the Question, correct answer and all possible answers.<br>
 FileImport.java - Load a new set of quiz from file. See example file.
 <p>
-Note: First line = Question, Second line = Correct answer, then all bogous answers (viewer will adapt to max 6).<br>
+Note: First line = Question, Second line = Correct answer, then all bogous answers (viewer adapt to max 5).<br>
 Empty line is divider and lines starting with "//" are skipped.<br>
 
 <p><b>Exceptions</b><br>
