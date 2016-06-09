@@ -20,7 +20,7 @@ public class MenuController {
 
 	/**
 	 * Called by the main application to give a reference back to itself.
-	 * @param mainApp
+	 * @param mainApp is Mork, the controller
 	 */
 	public void setMainApp(Controller mainApp) {
 		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo

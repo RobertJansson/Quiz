@@ -62,10 +62,10 @@ public final class FileImport
 
 	/**
 	 * Parser to read a file and compose each row with content into a list.
-	 * Each list is sent back to the {@code QuizModel} to compose {@code AQuiz)
+	 * Each list is sent back to the {@code QuizModel} to compose {@code AQuiz}
 	 * @param f is the file to read
 	 * @param quiz is the QuizModel to parse data into
-	 * @throws IOException
+	 * @throws IOException file not found
 	 */
 	private static void readFileToQuiz(File f, QuizModel quiz) throws IOException{
 

@@ -34,11 +34,11 @@ public class QuizViewController
 	@FXML private ProgressBar pB;
 	@FXML private Button bNext;
 
+	private static final boolean LOG = true;
 	/**
 	 * Private method for debugging.
 	 * @param s is the String to print to console
 	 */
-	private static final boolean LOG = true;
 	private void log(String s){ if (LOG) System.out.println(s); }
 
 	/**
@@ -65,7 +65,7 @@ public class QuizViewController
 
 	/**
 	 * Called by the main application to give a reference back to itself.
-	 * @param mainApp
+	 * @param mainApp is Mork, the controller
 	 */
 	public void setMainApp(Controller mainApp) {
 		this.mainApp = mainApp;	// Talk later but keep your number, Nanoo, Nanoo
@@ -73,6 +73,7 @@ public class QuizViewController
 
 	/**
 	 * Keyboard listeners
+	 * @param ke is KeyEvent
 	 */
 	@FXML
 	private void keyPressed(KeyEvent ke){
@@ -124,8 +125,8 @@ public class QuizViewController
 	/**
 	 * Called from Controller to show {@code AQuiz}.<br>
 	 * RadioButtons for answers not in the string-array will be hidden.
-	 * @param question
-	 * @param allAnswers -> RadioButton labels
+	 * @param question is the question
+	 * @param allAnswers are the labels of the RadioButtons
 	 */
 	public void showQuiz(String question, String[] allAnswers){
 		this.question.setText(question + "?");
@@ -146,7 +147,7 @@ public class QuizViewController
 	
 	/**
 	 * Update progress bar
-	 * @param double (0.0 is empty and 1.0 is full)
+	 * @param d is the progress (0.0 is empty and 1.0 is full)
 	 */
 	public void setProgress(double d){
 		pB.setProgress(d);

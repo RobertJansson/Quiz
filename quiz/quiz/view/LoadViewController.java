@@ -38,7 +38,7 @@ public class LoadViewController
 
 	/**
 	 * Called by the main application to give a reference back to itself.
-	 * @param mainApp
+	 * @param mainApp is Mork, the controller itself
 	 */
 	public void setMainApp(Controller mainApp) {
 		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo
@@ -46,7 +46,7 @@ public class LoadViewController
 
 	/**
 	 * Listeners, for when the user clicks a button
-	 * @throws Exception 
+	 * @throws Exception when file not found
 	 */
 	@FXML private void bResume() throws Exception	{ mainApp.resumeQuiz(); }
 	@FXML private void bRestart() throws Exception	{ mainApp.restartQuiz(); }
@@ -56,6 +56,7 @@ public class LoadViewController
 	 * Called to use the load view to display results from last game
 	 * @param score is the correct answers
 	 * @param max is the maximum score possible
+	 * @param attempt is the number of attempts
 	 */
 	public void showResult(int score, int max, int attempt){
 		bRestart.setVisible(true);

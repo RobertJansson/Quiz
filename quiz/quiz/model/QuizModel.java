@@ -25,7 +25,7 @@ public class QuizModel {
 	/**
 	 * Create a quiz and call FileImport to get data from file.
 	 * Will also create a game from the data model (quiz).
-	 * @throws Exception
+	 * @throws Exception when file not found
 	 */
 	public QuizModel() throws Exception{
 		quiz = new LinkedList<AQuiz>();
@@ -56,7 +56,7 @@ public class QuizModel {
 	
 	/**
 	 * Setter for the FileImport to build the list of {@code AQuiz}
-	 * @param list
+	 * @param list of strings with question, answer, wrong answers
 	 */
 	public void addAQuiz(List<String> list){
 		quiz.add(new AQuiz(list));

@@ -112,7 +112,7 @@ public class Controller extends Application
 
 	/**
 	 * Load a new game into a new model and start the game in a QuizView
-	 * @throws Exception
+	 * @throws Exception when file not found
 	 */
 	public void loadQuiz() throws Exception{
 		attempt = 0;
@@ -177,8 +177,6 @@ public class Controller extends Application
 
 	/**
 	 * Show result, called when quiz is finished
-	 * @param score is the number of correct answers
-	 * @param max is the maximum number of scores
 	 */
 	private void showResult(){
 		showLoadView();
