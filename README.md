@@ -4,7 +4,7 @@ Quiz has been compiled into a program so try that unless you are interested in s
 OS X: <A HREF=https://kvicktajm.se/apps/osx/Quiz.dmg>Quiz.dmg</A><br>
 Debian x86 (32bit): <A HREF=https://kvicktajm.se/apps/debian/Quiz_x86.tar.gz>Quiz_x86.tar.gz</A><br>
 JAR-file (require JRE 8u40 or later): <A HREF=https://kvicktajm.se/apps/jar8/Quiz.jar.zip>Quiz.jar.zip</A>
-(also take the <A HREF=https://kvicktajm.se/apps/jar8/Quiz Example.txt.zip>Quiz Example.txt.zip</A>)<p>
+(also take the <A HREF=https://kvicktajm.se/apps/jar8/QuizExample.txt.zip>QuizExample.txt.zip</A>)<p>
 
 <p><b>Controller</b><br>
 Controller.java - The main controller.
