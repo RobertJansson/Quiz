@@ -23,7 +23,7 @@ FileImport.java - Load a new Quiz-game from file. See example file.
 Note: First line = Question, Second line = Correct answer, then all bogous answers (viewer will adapt to max 6).<br>
 Empty line is divider and lines starting with "//" are skipped.
 <p>
-MyRuntimeException.java - to explore the new exception-system (with special windows) of JFX8 (technically I believe the ~ 40'th-ich upgrade of the JRE).
+MyRuntimeException.java - to explore the new exception-system (with special windows) of JFX8 (technically the JRE version 8u40).
 <p>
 Tooling: Java 8 (latest) and an IDE with JavaFX.<br>
 For Eclipse, update everything from within the program and go here for the e(fx)clipse toolset:<br> http://www.eclipse.org/efxclipse/install.html<br>
