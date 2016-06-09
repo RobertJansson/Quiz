@@ -2,23 +2,31 @@ package quiz.model;
 
 import quiz.MyRuntimeException;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * The Model<br>
  * Class to compose a Quiz-puzzle as a list of {@code AQuiz}
+ *
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
  */
 public class QuizModel {
 	private List<AQuiz> quiz;	// Quiz as loaded from file.
 	private List<AQuiz> game;	// Shallow copy of quiz so game can remove correctly
-								// ...answered questions and let user revisit the others.
+								// answered questions and let user revisit the others.
 	
 	// Simple debug method, just flip: LOG = true;
 	private static final boolean LOG = false;
 	private static void log(String s){ if (LOG) System.out.println(s); };
 
+	/**
+	 * Create a quiz and call FileImport to get data from file.
+	 * Will also create a game from the data model (quiz).
+	 * @throws Exception
+	 */
 	public QuizModel() throws Exception{
 		quiz = new LinkedList<AQuiz>();
 		FileImport.importQuiz(this);
@@ -43,6 +51,7 @@ public class QuizModel {
 		// This should be a deep copy and in the debugger it looks the same,
 		// except being synchronized by collection:
 //		game = Collections.synchronizedList(new LinkedList<AQuiz>(quiz));
+		// Also: import java.util.Collections;
 	}
 	
 	/**
@@ -98,6 +107,10 @@ public class QuizModel {
 		return quiz.size();
 	}
 	
+	/**
+	 * Compute the present score
+	 * @return score of present game
+	 */
 	public int getScore(){
 		return quiz.size() - game.size();
 	}

@@ -28,6 +28,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 {@code // <-This is a comment}<br>
 {@code }<br>
 {@code ***************************************}<br>
+ *
+ * @since JavaFX 8u40
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
  */
 public final class FileImport
 {

@@ -12,6 +12,13 @@ import quiz.view.LoadViewController;
 import quiz.view.MenuController;
 import quiz.view.QuizViewController;
 
+/**
+ * Controller for the program Quiz
+ * @since JavaFX 8u40
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
+ */
 public class Controller extends Application
 {
 	private Stage primaryStage;
@@ -44,6 +51,7 @@ public class Controller extends Application
 
 	/**
 	 * Initializes the root layout with a tiny menu.
+	 * Will catch IOExceptions and present message in an alert window
 	 */
 	private void initRootLayout() {
 		try {
@@ -59,7 +67,6 @@ public class Controller extends Application
 
 		} catch (IOException e) {
 			throw new MyRuntimeException(e.getMessage());
-//			e.printStackTrace();
 		}
 	}
 
@@ -70,6 +77,7 @@ public class Controller extends Application
 	/**
 	 * Initialize the Load-view.
 	 * Start of the program from a users view
+	 * Will catch IOExceptions and present message in an alert window
 	 */
 	private void showLoadView() {
 		try {
@@ -114,6 +122,7 @@ public class Controller extends Application
 
 	/**
 	 * Initializes the Quiz-game view
+	 * Will catch IOExceptions and present message in an alert window
 	 */
 	private void showQuizView() {
 		currentIndex = 0;
@@ -139,6 +148,7 @@ public class Controller extends Application
 	 * Private method to show the particular {@code AQuiz}.<br>
 	 * Called when a new quiz-game begins, but also during stepQuiz().
 	 * @param index to show
+	 * @throws MyRuntimeException if game is out of bounce
 	 */
 	private void showQuiz(int index){
 		view.setProgress((double) (1 + currentIndex + model.getScore()) / (double) model.getTotalScore());

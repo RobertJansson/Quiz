@@ -4,6 +4,15 @@ import quiz.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
+/**
+ * MenuController for Menu
+ * Menu is the stage (window) and includes the menu bar
+ * 
+ * @since JavaFX 8u40
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
+ */
 public class MenuController {
 
 	private Controller mainApp;

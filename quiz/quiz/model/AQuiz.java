@@ -8,6 +8,10 @@ import java.util.List;
  * Second string in list: Correct answer<br>
  * Consecutive strings in list: Bogous answer/-s<br>
  * (will adapt to size of list)
+ *
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
  */
 public class AQuiz
 {

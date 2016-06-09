@@ -5,10 +5,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+/**
+ * LoadViewController for LoadView
+ * LoadView is the start scene also used after a game-round
+ * 
+ * @since JavaFX 8u40
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
+ */
 public class LoadViewController
 {
 	private Controller mainApp;		// Reference to the main application
-	@FXML private Label headline;
+	@FXML private Label headline;	// GFX-elements...
 	@FXML private Label result;
 	@FXML private Button bResume;
 	@FXML private Button bRestart;
@@ -41,7 +50,7 @@ public class LoadViewController
 	 */
 	@FXML private void bResume() throws Exception	{ mainApp.resumeQuiz(); }
 	@FXML private void bRestart() throws Exception	{ mainApp.restartQuiz(); }
-	@FXML private void bLoad() throws Exception	{ mainApp.loadQuiz(); }
+	@FXML private void bLoad() throws Exception		{ mainApp.loadQuiz(); }
 
 	/**
 	 * Called to use the load view to display results from last game

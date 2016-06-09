@@ -10,6 +10,15 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * QuizViewController for QuizView
+ * QuizView is the on-going game scene presented in the stage [Menu]
+ * 
+ * @since JavaFX 8u40
+ * @author Robert Jansson
+ * @see <A href="https://github.com/RobertJansson">https://github.com/RobertJansson</A>
+ * @version 1.0
+ */
 public class QuizViewController
 {
 	private Controller mainApp;		// Reference to the main application
@@ -44,7 +53,8 @@ public class QuizViewController
 	/**
 	 * Initializes the controller class after the fxml file.
 	 */
-	@FXML private void initialize() {
+	@FXML
+	private void initialize() {
 		rB = new RadioButton[6];
 		rB[0] = rbA; rB[1] = rbB; rB[2] = rbC;	// House-keeping
 		rB[3] = rbD; rB[4] = rbE; rB[5] = rbF;
@@ -58,7 +68,7 @@ public class QuizViewController
 	 * @param mainApp
 	 */
 	public void setMainApp(Controller mainApp) {
-		this.mainApp = mainApp;	// Talk later, Nanoo, Nanoo
+		this.mainApp = mainApp;	// Talk later but keep your number, Nanoo, Nanoo
 	}
 
 	/**
@@ -86,7 +96,7 @@ public class QuizViewController
 	}
 	
 	/**
-	 * Private method for keyPressed(KeyEvent)
+	 * Helper-method for keyPressed(KeyEvent)
 	 * @param pressed RadioButton
 	 */
 	private void rb(RadioButton pressed){
@@ -103,7 +113,7 @@ public class QuizViewController
 	@FXML private void bNext()		{ getNextQuiz();			}
 
 	/**
-	 * Private method for button-listeners.<br>
+	 * Helper-method for button-listeners.<br>
 	 * Let controller evaluate the picked answer and move on in stepQuiz().
 	 */
 	private void getNextQuiz() {
@@ -112,7 +122,7 @@ public class QuizViewController
 	}
 
 	/**
-	 * This is called from Controller to show {@code AQuiz}.<br>
+	 * Called from Controller to show {@code AQuiz}.<br>
 	 * RadioButtons for answers not in the string-array will be hidden.
 	 * @param question
 	 * @param allAnswers -> RadioButton labels
