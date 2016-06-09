@@ -15,9 +15,12 @@ import java.util.List;
  */
 public class AQuiz
 {
+	private final static int MAX_QUESTIONS = 6;	// Depending on the viewer really
+
 	private String question;
 	private String correct;
-	private String[] allAnswers;
+	private String[] allAnswers;				// Including the correct answer
+
 	
 	/**
 	 * Constructor to compose {@code AQuiz} from a list of string.<br>
@@ -25,12 +28,16 @@ public class AQuiz
 	 * List-second should be the correct answer.<p>
 	 * Note:<br>
 	 * This constructor will insert the correct answer with random position.<br>
-	 * @param list of strings
+	 * @param list of strings with question, answer, wrong answers
 	 */
 	public AQuiz(List<String> list){
 		question = list.get(0);
 		correct = list.get(1);
-		allAnswers = new String[list.size()-1];
+
+		if (list.size()-1 > MAX_QUESTIONS)			// Adjust to number of answers
+			allAnswers = new String[MAX_QUESTIONS]; // Trunc if more than viewer handle
+		else
+			allAnswers = new String[list.size()-1];
 		
 		int correctIndex = (int) (Math.random() * allAnswers.length);
 		int listIndex = 2;
@@ -39,7 +46,7 @@ public class AQuiz
 				allAnswers[i] = correct;
 			} else {
 			allAnswers[i] = list.get(listIndex);
-			listIndex++;
+			listIndex = listIndex + 1;
 			}
 		}
 	}
